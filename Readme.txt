@@ -1,0 +1,52 @@
+1). I you want to create a new image using this dockerfile use below command:
+    -------------------->>> "sudo docker build -t <image name> ."
+
+2). Or if you want to load my image then use below command:
+    -------------------->>> "docker pull shivakratos/pyspark"
+
+3). To run docker image(default container):
+    -------------------->>> "docker run -it <image name>:latest"
+
+4). To run docker image (your container):
+    -------------------->>> "docker run -it --name <container name> <image name>"
+
+5). To develop spark job inside the container using image:
+    --------------------->>> "docker run -it --name <container name> <image name> /bin/bash"
+    you terminal will enter inside working directory of image.
+
+6). Use -d flag to start a container in detach mode so that it don't occupy your terminal:
+    --------------------->>> "docker run -it --name <container name> -d <image name> /bin/bash"
+    You can use vs-code and connect to your container and access all of files and dir inside container."
+
+7). To delete all containers:
+    --------------------->>> "sudo docker rm -f $(sudo docker ps -a -q)"
+
+8). To delete all images:
+    --------------------->>> "sudo docker rmi -f $(sudo docker images -a -q)"
+
+9). sudo docker images -a -q ------->>> This will give all images id
+
+10). sudo docker ps -a -q ------->>> This will give all containers id
+
+11). To run pyspark on jupyter run below command just after creating the image:
+    ------------------------------>>> "docker run -it --name <container name> -p 8889:8888 -p 4041:4040 -p 7078:7077 -p 8081:8080 -p 18081:18080 <image name>:latest /bin/bash scripts/start_juputer_notebook.sh"
+
+    or if you are inside the container and then want to run jupyter notebook use:
+    ----------------------------->>> "/bin/bash /app/scripts/start_juputer_notebook.sh"
+
+    Note* --->>> access this notebook on your browser by using : "localhost:8889"
+
+
+12). If it is showing that port is allready in use then to stop that port:
+    ----------------->>> lsof -i :<port number>
+    ----------------->>> kill -9 <pid> (of that port)
+
+    for eg:-
+    ```````
+        COMMAND      PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+        jupyter-n 124322 shiva    6u  IPv4 469348      0t0  TCP *:8889 (LISTEN)
+
+        in this case 8889 is the port and 124322 is its pid.
+
+
+13). Default password for jupyter notebook ---------------->>> 11111 (you can change it in docker file and build new image or create  a new one using jupyter server password command inside container)
