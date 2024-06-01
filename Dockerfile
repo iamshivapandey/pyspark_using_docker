@@ -18,7 +18,7 @@ ENV PATH=$PATH:/app/spark/bin
 
 RUN apt-get update && apt-get install -y wget && \
 # Installing spark from official website
-    wget https://dlcdn.apache.org/spark/spark-3.4.2/spark-3.4.2-bin-hadoop3.tgz && tar -xf spark-3.4.2-bin-hadoop3.tgz && rm spark-3.4.2-bin-hadoop3.tgz && mv spark-3.4.2-bin-hadoop3 spark && \
+    wget https://dlcdn.apache.org/spark/spark-3.4.3/spark-3.4.3-bin-hadoop3.tgz && tar -xf spark-3.4.3-bin-hadoop3.tgz && rm spark-3.4.3-bin-hadoop3.tgz && mv spark-3.4.3-bin-hadoop3 spark && \
 # Installing java for spark
     apt-get install -y openjdk-11-jre && \
 # Installing required python modules
